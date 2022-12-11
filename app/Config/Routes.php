@@ -46,6 +46,14 @@ $routes->put('category/(:num)', 'CategoryController::update/$1');
 $routes->delete('category/(:num)', 'CategoryController::delete/$1');
 
 // Resourse to User
+$routes->get('user', 'UserController::index');
+$routes->get('user/(:num)', 'UserController::show/$1');
+$routes->post('user', 'UserController::create');
+$routes->put('user/(:num)', 'UserController::update/$1');
+$routes->delete('user/(:num)', 'UserController::delete/$1');
+
+
+
 
 
 
