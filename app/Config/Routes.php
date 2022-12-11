@@ -37,6 +37,19 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+
+// Resourse to Category
+$routes->get('category', 'CategoryController::index');
+$routes->get('category/(:num)', 'CategoryController::show/$1');
+$routes->post('category', 'CategoryController::create');
+$routes->put('category/(:num)', 'CategoryController::update/$1');
+$routes->delete('category/(:num)', 'CategoryController::delete/$1');
+
+// Resourse to User
+
+
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
