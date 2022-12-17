@@ -52,6 +52,12 @@ $routes->post('user', 'UserController::create');
 $routes->put('user/(:num)', 'UserController::update/$1');
 $routes->delete('user/(:num)', 'UserController::delete/$1');
 
+// Resourse to Department
+$routes->get('department', 'DepartmentController::index');
+$routes->get('department/(:num)', 'DepartmentController::show/$1');
+$routes->post('department', 'DepartmentController::create');
+$routes->put('department/(:num)', 'DepartmentController::update/$1');
+$routes->delete('department/(:num)', 'DepartmentController::delete/$1');
 
 
 
