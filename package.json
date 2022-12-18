@@ -19,5 +19,13 @@
   "bugs": {
     "url": "https://github.com/Jan1si/service-desk/issues"
   },
-  "homepage": "https://github.com/Jan1si/service-desk#readme"
+  "homepage": "https://github.com/Jan1si/service-desk#readme",
+  "dependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^9.1.0",
+    "path": "^0.12.7",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
 }

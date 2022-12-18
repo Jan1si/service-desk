@@ -195,6 +195,8 @@
 </head>
 <body>
 
+<div id="app"></div>
+
 <!-- HEADER: MENU + HEROE SECTION -->
 <header>
 
@@ -285,6 +287,7 @@
 
     </section>
 
+
 </div>
 
 <!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
@@ -320,6 +323,6 @@
 </script>
 
 <!-- -->
-
+<script src="dist/main.js" charset="utf-8"></script>
 </body>
 </html>

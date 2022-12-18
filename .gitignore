@@ -1,6 +1,7 @@
 #-------------------------
 # Operating Specific Junk Files
 #-------------------------
+node_modules/
 
 # OS X
 .DS_Store
@@ -96,6 +97,7 @@ _modules/*
 
 # Jetbrains editors (PHPStorm, etc)
 .idea/
+
 *.iml
 
 # Netbeans
