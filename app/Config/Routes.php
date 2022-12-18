@@ -66,8 +66,28 @@ $routes->post('prioriti', 'PrioritiController::create');
 $routes->put('prioriti/(:num)', 'PrioritiController::update/$1');
 $routes->delete('prioriti/(:num)', 'PrioritiController::delete/$1');
 
+// Resourse to Role
+$routes->get('role', 'RoleController::index');
+$routes->get('role/(:num)', 'RoleController::show/$1');
+$routes->post('role', 'RoleController::create');
+$routes->put('role/(:num)', 'RoleController::update/$1');
+$routes->delete('role/(:num)', 'RoleController::delete/$1');
 
 
+// Resourse to Status
+$routes->get('status', 'StatusController::index');
+$routes->get('status/(:num)', 'StatusController::show/$1');
+$routes->post('status', 'StatusController::create');
+$routes->put('status/(:num)', 'StatusController::update/$1');
+$routes->delete('status/(:num)', 'StatusController::delete/$1');
+
+
+// Resourse to Order
+$routes->get('order', 'OrderController::index');
+$routes->get('order/(:num)', 'OrderController::show/$1');
+$routes->post('order', 'OrderController::create');
+$routes->put('order/(:num)', 'OrderController::update/$1');
+$routes->delete('order/(:num)', 'OrderController::delete/$1');
 
 /*
  * --------------------------------------------------------------------

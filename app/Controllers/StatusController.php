@@ -6,6 +6,10 @@ use CodeIgniter\RESTful\ResourceController;
 
 class StatusController extends ResourceController
 {
+
+    protected $modelName = 'App\Models\Status';
+    protected $format = 'json';
+
     /**
      * Return an array of resource objects, themselves in array format
      *
@@ -13,7 +17,13 @@ class StatusController extends ResourceController
      */
     public function index()
     {
-        //
+        $data = [
+            'message' => 'success',
+            'status_data' => $this->model->findAll()
+        ];
+
+        return $this->respond($data, 200);
+
     }
 
     /**
@@ -23,7 +33,17 @@ class StatusController extends ResourceController
      */
     public function show($id = null)
     {
-        //
+        $data = [
+            'message' => 'success',
+            'status_data' => $this->model->find($id)
+        ];
+
+
+        if (empty($data['status_data'])) {
+            return $this->failNotFound("Not Found 404");
+        }
+
+        return $this->respond($data, 200);
     }
 
     /**
@@ -43,7 +63,27 @@ class StatusController extends ResourceController
      */
     public function create()
     {
-        //
+        $rules = $this->validate([
+            'status_name' => 'required|min_length[3]|max_length[50]'
+        ]);
+
+        if (!$rules) {
+            $response = [
+                'message' => $this->validator->getErrors()
+            ];
+
+            return $this->failValidationErrors($response);
+        }
+
+        $this->model->insert([
+            'status_name' => esc($this->request->getVar('status_name'))
+        ]);
+
+        $response = [
+            'message' => 'success'
+        ];
+
+        return $this->respondCreated($response);
     }
 
     /**
@@ -63,7 +103,27 @@ class StatusController extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        $rules = $this->validate([
+            'status_name' => 'required|min_length[3]|max_length[50]'
+        ]);
+
+        if (!$rules) {
+            $response = [
+                'message' => $this->validator->getErrors()
+            ];
+
+            return $this->failValidationErrors($response);
+        }
+
+        $this->model->update($id, [
+            'status_name' => esc($this->request->getVar('status_name'))
+        ]);
+
+        $response = [
+            'message' => 'success'
+        ];
+
+        return $this->respond($response, 200);
     }
 
     /**
@@ -73,6 +133,12 @@ class StatusController extends ResourceController
      */
     public function delete($id = null)
     {
-        //
+        $this->model->delete($id);
+
+        $response = [
+            'message' => 'success'
+        ];
+
+        return $this->respondDeleted($response, 200);
     }
 }
