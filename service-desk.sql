@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 18 2022 г., 11:18
--- Версия сервера: 8.0.24
--- Версия PHP: 8.0.14
+-- Время создания: Дек 18 2022 г., 19:19
+-- Версия сервера: 8.0.30
+-- Версия PHP: 8.1.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,19 +30,9 @@ SET time_zone = "+00:00";
 CREATE TABLE `categories` (
   `id` int UNSIGNED NOT NULL,
   `category_name` varchar(50) NOT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Дамп данных таблицы `categories`
---
-
-INSERT INTO `categories` (`id`, `category_name`, `created_at`, `updated_at`) VALUES
-(1, 'Новая 1 категория', '2022-12-11 18:05:40', '2022-12-11 09:35:32'),
-(2, 'Категория 2', '2022-12-11 18:05:40', '2022-12-11 18:05:40'),
-(3, 'Категория 3', '2022-12-11 09:20:05', '2022-12-11 09:20:05'),
-(4, 'Категория 4', '2022-12-11 09:26:11', '2022-12-11 09:26:11');
 
 -- --------------------------------------------------------
 
@@ -53,16 +43,9 @@ INSERT INTO `categories` (`id`, `category_name`, `created_at`, `updated_at`) VAL
 CREATE TABLE `departments` (
   `id` int UNSIGNED NOT NULL,
   `department_name` varchar(100) NOT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Дамп данных таблицы `departments`
---
-
-INSERT INTO `departments` (`id`, `department_name`, `created_at`, `updated_at`) VALUES
-(1, 'Тестовое название 1', '2022-12-17 12:24:31', '2022-12-17 12:25:43');
 
 -- --------------------------------------------------------
 
@@ -85,13 +68,13 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`, `batch`) VALUES
-(1, '2022-12-11-131341', 'App\\Database\\Migrations\\Roles', 'default', 'App', 1670766074, 1),
-(2, '2022-12-11-131346', 'App\\Database\\Migrations\\Users', 'default', 'App', 1670766074, 1),
-(3, '2022-12-11-131358', 'App\\Database\\Migrations\\Orders', 'default', 'App', 1670766093, 2),
-(4, '2022-12-11-131452', 'App\\Database\\Migrations\\Categories', 'default', 'App', 1670766093, 2),
-(5, '2022-12-11-131551', 'App\\Database\\Migrations\\Departments', 'default', 'App', 1670766093, 2),
-(6, '2022-12-11-131616', 'App\\Database\\Migrations\\Priorities', 'default', 'App', 1670766093, 2),
-(7, '2022-12-11-131630', 'App\\Database\\Migrations\\Statuses', 'default', 'App', 1670766093, 2);
+(28, '2022-12-11-131341', 'App\\Database\\Migrations\\Roles', 'default', 'App', 1671380142, 1),
+(29, '2022-12-11-131346', 'App\\Database\\Migrations\\Users', 'default', 'App', 1671380143, 1),
+(30, '2022-12-11-131358', 'App\\Database\\Migrations\\Orders', 'default', 'App', 1671380143, 1),
+(31, '2022-12-11-131452', 'App\\Database\\Migrations\\Categories', 'default', 'App', 1671380143, 1),
+(32, '2022-12-11-131551', 'App\\Database\\Migrations\\Departments', 'default', 'App', 1671380143, 1),
+(33, '2022-12-11-131616', 'App\\Database\\Migrations\\Priorities', 'default', 'App', 1671380143, 1),
+(34, '2022-12-11-131630', 'App\\Database\\Migrations\\Statuses', 'default', 'App', 1671380143, 1);
 
 -- --------------------------------------------------------
 
@@ -101,17 +84,17 @@ INSERT INTO `migrations` (`id`, `version`, `class`, `group`, `namespace`, `time`
 
 CREATE TABLE `orders` (
   `id` int UNSIGNED NOT NULL,
-  `category_id` int DEFAULT NULL,
-  `priority_id` int DEFAULT NULL,
-  `status_id` int DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
-  `role_id` int DEFAULT NULL,
-  `department_id` int DEFAULT NULL,
-  `worker_id` int DEFAULT NULL,
+  `category_id` int UNSIGNED DEFAULT NULL,
+  `priority_id` int UNSIGNED DEFAULT NULL,
+  `status_id` int UNSIGNED DEFAULT NULL,
+  `user_id` int UNSIGNED DEFAULT NULL,
+  `role_id` int UNSIGNED DEFAULT NULL,
+  `department_id` int UNSIGNED DEFAULT NULL,
+  `worker_id` int UNSIGNED DEFAULT NULL,
   `title` varchar(100) NOT NULL,
   `deskription` varchar(50) NOT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
   `close_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
@@ -125,16 +108,9 @@ CREATE TABLE `priorities` (
   `id` int UNSIGNED NOT NULL,
   `priority_name` varchar(100) NOT NULL,
   `max_time` int NOT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Дамп данных таблицы `priorities`
---
-
-INSERT INTO `priorities` (`id`, `priority_name`, `max_time`, `created_at`, `updated_at`) VALUES
-(2, 'Тестовое название 2', 2, '2022-12-17 13:20:50', '2022-12-17 13:20:50');
 
 -- --------------------------------------------------------
 
@@ -145,8 +121,8 @@ INSERT INTO `priorities` (`id`, `priority_name`, `max_time`, `created_at`, `upda
 CREATE TABLE `roles` (
   `id` int UNSIGNED NOT NULL,
   `role_name` varchar(100) NOT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
@@ -158,8 +134,8 @@ CREATE TABLE `roles` (
 CREATE TABLE `statuses` (
   `id` int UNSIGNED NOT NULL,
   `status_name` varchar(100) NOT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
@@ -170,21 +146,14 @@ CREATE TABLE `statuses` (
 
 CREATE TABLE `users` (
   `id` int UNSIGNED NOT NULL,
-  `role_id` int DEFAULT NULL,
-  `department_id` int DEFAULT NULL,
+  `role_id` int UNSIGNED DEFAULT NULL,
+  `department_id` int UNSIGNED DEFAULT NULL,
   `user_name` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
---
--- Дамп данных таблицы `users`
---
-
-INSERT INTO `users` (`id`, `role_id`, `department_id`, `user_name`, `password`, `email`, `created_at`, `updated_at`) VALUES
-(4, 121, 2, 'Nikita11111', '$2y$10$4/IlObBQcN3fXiZ9z8qCMeleIgUPMrErsVr9hWzG6gR', 'kirill@mail.ru', '2022-12-11 10:38:10', '2022-12-11 10:43:03');
 
 --
 -- Индексы сохранённых таблиц
@@ -212,7 +181,14 @@ ALTER TABLE `migrations`
 -- Индексы таблицы `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`,`priority_id`,`status_id`,`department_id`,`worker_id`),
+  ADD KEY `orders_role_id_foreign` (`role_id`),
+  ADD KEY `orders_user_id_foreign` (`user_id`),
+  ADD KEY `department_id` (`department_id`),
+  ADD KEY `worker_id` (`worker_id`),
+  ADD KEY `status_id` (`status_id`),
+  ADD KEY `priority_id` (`priority_id`);
 
 --
 -- Индексы таблицы `priorities`
@@ -236,7 +212,9 @@ ALTER TABLE `statuses`
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `users_role_id_foreign` (`role_id`),
+  ADD KEY `department_id` (`department_id`);
 
 --
 -- AUTO_INCREMENT для сохранённых таблиц
@@ -246,19 +224,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
@@ -270,7 +248,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT для таблицы `priorities`
 --
 ALTER TABLE `priorities`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
@@ -288,7 +266,30 @@ ALTER TABLE `statuses`
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- Ограничения внешнего ключа сохраненных таблиц
+--
+
+--
+-- Ограничения внешнего ключа таблицы `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`worker_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`status_id`) REFERENCES `statuses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_ibfk_5` FOREIGN KEY (`priority_id`) REFERENCES `priorities` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `orders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ограничения внешнего ключа таблицы `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `departments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

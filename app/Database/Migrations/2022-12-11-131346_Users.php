@@ -18,11 +18,13 @@ class Users extends Migration
             'role_id' => [
                 'type'       => 'INT',
                 'constraint'     => 11,
+                'unsigned'       => true,
                 'null' => true,
             ],
             'department_id' => [
                 'type'       => 'INT',
                 'constraint'     => 11,
+                'unsigned'       => true,
                 'null' => true,
             ],
             'user_name' => [
@@ -49,7 +51,8 @@ class Users extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id', true);
+        $this->forge->addPrimaryKey('id');
+        $this->forge->addForeignKey('role_id', 'roles', 'id');
         $this->forge->createTable('users');
     }
 

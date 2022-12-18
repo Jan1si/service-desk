@@ -28,7 +28,7 @@ class Roles extends Migration
                 'null' => true,
             ],
         ]);
-        $this->forge->addKey('id', true);
+        $this->forge->addPrimaryKey('id');
         $this->forge->createTable('roles');
     }
 
