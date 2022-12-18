@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Дек 17 2022 г., 20:12
--- Версия сервера: 8.0.30
--- Версия PHP: 8.1.9
+-- Время создания: Дек 18 2022 г., 11:18
+-- Версия сервера: 8.0.24
+-- Версия PHP: 8.0.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,6 +56,13 @@ CREATE TABLE `departments` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `departments`
+--
+
+INSERT INTO `departments` (`id`, `department_name`, `created_at`, `updated_at`) VALUES
+(1, 'Тестовое название 1', '2022-12-17 12:24:31', '2022-12-17 12:25:43');
 
 -- --------------------------------------------------------
 
@@ -121,6 +128,13 @@ CREATE TABLE `priorities` (
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+--
+-- Дамп данных таблицы `priorities`
+--
+
+INSERT INTO `priorities` (`id`, `priority_name`, `max_time`, `created_at`, `updated_at`) VALUES
+(2, 'Тестовое название 2', 2, '2022-12-17 13:20:50', '2022-12-17 13:20:50');
 
 -- --------------------------------------------------------
 
@@ -238,7 +252,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT для таблицы `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `migrations`
@@ -256,7 +270,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT для таблицы `priorities`
 --
 ALTER TABLE `priorities`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT для таблицы `roles`
