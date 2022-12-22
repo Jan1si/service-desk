@@ -1,0 +1,98 @@
+.row {
+	display: flex;
+	justify-content: space-between;
+}
+
+.headerBlock > h3{
+	color: #000000B2;
+	font-size: 30px;
+	font-weight: 800;
+}
+
+.bodyBlock {
+	margin-top: 20px
+}
+.inputGroup{
+	width: fit-content;
+	position: relative;
+	margin-bottom: 20px;
+	align-items: center;
+}
+
+.selectInput{
+	width: 385px;
+	height: 60px;
+	border: none;
+	outline: none;
+	box-shadow: 0px 5px 6px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	font-size: 18px;
+	font-weight: 600;
+	padding: 0 70px 0 16px
+}
+
+.btnSelect{
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	top: 10px;
+	right: 15px;
+	width:40px;
+	height: 40px;
+}
+
+.textDesc{
+	font-size: 18px;
+	font-weight: 600;
+	padding: 25px;
+	border: none;
+	outline: none;
+	box-shadow: 0px 5px 6px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+	resize: none;
+	width: 700px;
+	height: 300px;
+}
+
+.btnSend{
+	float: right;
+	padding: 15px 50px;
+	border: none;
+	background: linear-gradient(131.33deg, #FF4343 -3.53%, rgba(255, 119, 119, 0.83) 196.14%);
+	border-radius: 10px;
+	font-weight: 700;
+	font-size: 20px;
+	color: #FFFFFF;
+	margin-top: 25px;
+}
+
+.listRequest {
+	width: 400px;
+	height: 470px;
+	box-shadow: 0px 5px 6px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 10px;
+}
+
+.emptyBlock{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.emptyImg{
+	width: 207px;
+	height: 207px;
+	object-fit: contain;
+	margin-top: 50px
+}
+
+.emptyP{
+	font-weight: 700;
+	font-size: 30px;
+	text-align: center;
+	color: #000000B2;
+	width: 300px;
+	margin-top: 20px
+}
