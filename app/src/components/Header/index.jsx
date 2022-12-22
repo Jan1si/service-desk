@@ -24,7 +24,7 @@ export const Header = () => {
                     </Link>
                 </li>
                 <li class={styles.navItem}>
-                    <Link to="/" style={{"textDecoration": "none"}}>
+                    <Link to="/lists/users" style={{"textDecoration": "none"}}>
                         <p class={`${styles.baseText} ${styles.navLink}`}>Справочник</p>
                     </Link>
                 </li>
