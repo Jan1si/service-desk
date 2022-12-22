@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './Header';
 import logo  from '../../assets/logo.svg';
 
@@ -7,20 +8,27 @@ export const Header = () => {
     <header class={styles.header}>
         <div class={styles.navBlock}>
             <div class={styles.logo}>
-                <a href="#" class={styles.logoSvg}>
+                <Link to="/" >
                     <img src={logo} alt="logo" />
-                </a>
+                </Link>
             </div>
             <nav class={styles.navBar}>
                 <li class={styles.navItem}>
-                    <a href="./index.html" class={`${styles.activeText} ${styles.navLink}`}>Составить заявку</a>
+                    <Link to="/" style={{"textDecoration": "none"}}>
+                        <p class={`${styles.activeText} ${styles.navLink}`}>Составить заявку</p>
+                    </Link>
                 </li>
                 <li class={styles.navItem}>
-                    <a href="../list_questions/index.html" class={`${styles.baseText} ${styles.navLink}`}>Журнал заявок</a>
+                    <Link to="/questions" style={{"textDecoration": "none"}}>
+                        <p class={`${styles.baseText} ${styles.navLink}`}>Журнал заявок</p>
+                    </Link>
                 </li>
                 <li class={styles.navItem}>
-                    <a href="#" class={`${styles.baseText} ${styles.navLink}`}>Справочник</a>				    
+                    <Link to="/" style={{"textDecoration": "none"}}>
+                        <p class={`${styles.baseText} ${styles.navLink}`}>Справочник</p>
+                    </Link>
                 </li>
+
             </nav>
         </div>
         <div class={styles.authBlock}>
