@@ -9,10 +9,10 @@ import { Users } from './pages/Users';
 
 export const App = () => {
   return (
-        <div class={styles.wrapperApp}>
-        <div class={styles.container}>
+        <div className={styles.wrapperApp}>
+        <div className={styles.container}>
             <Header />
-            <div class={styles.content}>
+            <div className={styles.content}>
                 <Routes>
                     <Route exact path='/' element={<Main />}/>
                     <Route exact path='/questions' element={<Quiestions />}/>

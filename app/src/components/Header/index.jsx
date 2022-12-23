@@ -2,23 +2,46 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header';
 import logo  from '../../assets/logo.svg';
+import { useState, useEffect } from 'react';
 
 export const Header = () => {
+
+    const [isActive, setIsActive] = useState(0);
+    const links = ["Составить заявку", "Журнал заявок", "Справочник"];
+
+    useEffect(() => {
+        setIsActive(() => JSON.parse(window.localStorage.getItem('isActive')));
+    }, []);
+
+    // const linkClick = (idx) => {
+    //     setIsActive(() => idx);
+    //     window.localStorage.setItem('isActive', isActive);
+    // }
+
+    useEffect(() => {
+        window.localStorage.setItem('isActive', isActive);
+    }, [isActive]);
+
   return (
-    <header class={styles.header}>
-        <div class={styles.navBlock}>
-            <div class={styles.logo}>
+    <header className={styles.header}>
+        <div className={styles.navBlock}>
+            <div className={styles.logo}>
                 <Link to="/" >
                     <img src={logo} alt="logo" />
                 </Link>
             </div>
-            <nav class={styles.navBar}>
-                <li class={styles.navItem}>
-                    <Link to="/" style={{"textDecoration": "none"}}>
-                        <p class={`${styles.activeText} ${styles.navLink}`}>Составить заявку</p>
-                    </Link>
-                </li>
-                <li class={styles.navItem}>
+            <nav className={styles.navBar}>
+                    {
+                        links.map((item, idx) => (
+                            <li key={idx} className={styles.navItem}>
+                                <Link to="/" style={{"textDecoration": "none"}}>
+                                    <p onClick={() => setIsActive(() => idx)} className={` ${isActive === idx ? styles.activeText : null} ${styles.navLink} ${styles.baseText}`}>{item}</p>
+                                </Link>
+                            </li>
+                        ))
+                    }
+                
+                {/* <li className={styles.navItem}>
                     <Link to="/questions" style={{"textDecoration": "none"}}>
                         <p class={`${styles.baseText} ${styles.navLink}`}>Журнал заявок</p>
                     </Link>
@@ -27,17 +50,17 @@ export const Header = () => {
                     <Link to="/lists/users" style={{"textDecoration": "none"}}>
                         <p class={`${styles.baseText} ${styles.navLink}`}>Справочник</p>
                     </Link>
-                </li>
+                </li> */}
 
             </nav>
         </div>
-        <div class={styles.authBlock}>
-            <ul class={styles.authBar}>
-                <li class={styles.authItem}>
-                    <a href="#" class={`${styles.activeText} ${styles.authLink}`}>Войти</a>
+        <div className={styles.authBlock}>
+            <ul className={styles.authBar}>
+                <li className={styles.authItem}>
+                    <a href="#" className={`${styles.activeText} ${styles.authLink}`}>Войти</a>
                 </li>
-                <li class={styles.authItem}>
-                    <a href="#" class={`${styles.baseText} ${styles.authLink}`}>Регистрация</a>
+                <li className={styles.authItem}>
+                    <a href="#" className={`${styles.baseText} ${styles.authLink}`}>Регистрация</a>
                 </li>
             </ul>
         </div>

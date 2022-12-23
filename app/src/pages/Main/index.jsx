@@ -5,37 +5,37 @@ import styles from './Main.scss';
 
 export const Main = () => {
   return (
-    <div class={styles.row}>
-        <div class={styles.leftSideBlock}>
-            <div class={styles.headerBlock}>
+    <div className={styles.row}>
+        <div className={styles.leftSideBlock}>
+            <div className={styles.headerBlock}>
                 <h3>Составление заявки</h3>
             </div>
-            <div class={styles.bodyBlock}>
+            <div className={styles.bodyBlock}>
                 <form action="" method="POST">
-                    <div class={styles.inputGroup}>
-                        <input placeholder="Выберите категорию проблемы...." type="text" class={styles.selectInput} disabled />
-                        <div class={styles.btnSelect}>
+                    <div className={styles.inputGroup}>
+                        <input placeholder="Выберите категорию проблемы...." type="text" className={styles.selectInput} disabled />
+                        <div className={styles.btnSelect}>
                             <img src={arrowOpen} alt="open" />
                         </div>
                     </div>
                     <input type="text" value="Значение из useState" hidden />
-                    <div class={styles.inputGroup}>
-                        <textarea class={styles.textDesc} placeholder="Опишите вашу проблему..."></textarea>
+                    <div className={styles.inputGroup}>
+                        <textarea className={styles.textDesc} placeholder="Опишите вашу проблему..."></textarea>
                     </div>
 
-                    <button class={styles.btnSend}>Отправить</button>
+                    <button className={styles.btnSend}>Отправить</button>
                 </form>
             </div>
         </div>
-        <div class={styles.rightSideBlock}>
-            <div class={styles.headerBlock}>
+        <div className={styles.rightSideBlock}>
+            <div className={styles.headerBlock}>
                 <h3>Все ваши заявки</h3>
             </div>
-            <div class={styles.bodyBlock}>
-                <div class={styles.listRequest}>
-                    <div class={styles.emptyBlock}>
-                        <img class={styles.emptyImg} src={empty} alt="empty" />
-                        <p class={styles.emptyP}>Список ваших заявок пуст!</p>
+            <div className={styles.bodyBlock}>
+                <div className={styles.listRequest}>
+                    <div className={styles.emptyBlock}>
+                        <img className={styles.emptyImg} src={empty} alt="empty" />
+                        <p className={styles.emptyP}>Список ваших заявок пуст!</p>
                     </div>
                 </div>
             </div>

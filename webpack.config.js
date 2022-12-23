@@ -11,6 +11,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'public/dist'),
     filename: production ? '[name].[contenthash].js' : '[name].js',
+    publicPath: '/'
   },
   module: {
         rules: [
@@ -50,6 +51,9 @@ module.exports = {
                 use: ['file-loader'],
             },
         ],
+    },
+    devServer: {
+      historyApiFallback: true,
     },
   resolve: {
     extensions: ["*", ".js", ".jsx",".scss"],
