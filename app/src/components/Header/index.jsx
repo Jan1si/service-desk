@@ -7,20 +7,29 @@ import { useState, useEffect } from 'react';
 export const Header = () => {
 
     const [isActive, setIsActive] = useState(0);
-    const links = ["Составить заявку", "Журнал заявок", "Справочник"];
+    const links = [
+        {
+            'title': "Составить заявку",
+            'uri': '/'
+        },
+        {
+            'title': "Журнал заявок",
+            'uri': '/questions'
+        },
+        {
+            'title': "Справочник",
+            'uri': '/lists/users'
+        }
+    ];
 
     useEffect(() => {
         setIsActive(() => JSON.parse(window.localStorage.getItem('isActive')));
     }, []);
 
-    // const linkClick = (idx) => {
-    //     setIsActive(() => idx);
-    //     window.localStorage.setItem('isActive', isActive);
-    // }
-
-    useEffect(() => {
-        window.localStorage.setItem('isActive', isActive);
-    }, [isActive]);
+    const linkClick = (idx) => {
+        setIsActive(() => idx);
+        window.localStorage.setItem('isActive', idx);
+    }
 
   return (
     <header className={styles.header}>
@@ -31,27 +40,21 @@ export const Header = () => {
                 </Link>
             </div>
             <nav className={styles.navBar}>
-                    {
-                        links.map((item, idx) => (
-                            <li key={idx} className={styles.navItem}>
-                                <Link to="/" style={{"textDecoration": "none"}}>
-                                    <p onClick={() => setIsActive(() => idx)} className={` ${isActive === idx ? styles.activeText : null} ${styles.navLink} ${styles.baseText}`}>{item}</p>
-                                </Link>
-                            </li>
-                        ))
-                    }
-                
-                {/* <li className={styles.navItem}>
-                    <Link to="/questions" style={{"textDecoration": "none"}}>
-                        <p class={`${styles.baseText} ${styles.navLink}`}>Журнал заявок</p>
-                    </Link>
-                </li>
-                <li class={styles.navItem}>
-                    <Link to="/lists/users" style={{"textDecoration": "none"}}>
-                        <p class={`${styles.baseText} ${styles.navLink}`}>Справочник</p>
-                    </Link>
-                </li> */}
-
+                {
+                    links.map((item, idx) => (
+                        <li key={idx} className={styles.navItem}>
+                            <Link to={item.uri} style={{"textDecoration": "none"}}>
+                                <p 
+                                onClick={() => linkClick(idx)} 
+                                className={
+                                    ` ${isActive === idx ? styles.activeText : null}
+                                      ${styles.navLink} ${styles.baseText}`}>
+                                {item.title}
+                                </p>
+                            </Link>
+                        </li>
+                    ))
+                }
             </nav>
         </div>
         <div className={styles.authBlock}>
