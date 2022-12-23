@@ -1,7 +1,7 @@
 import React from 'react'
 import  arrowOpen  from '../../assets/arrowOpen.svg';
 import  empty  from '../../assets/empty.svg';
-import styles from './Main.scss';
+import styles from './Main.module.scss';
 
 export const Main = () => {
   return (

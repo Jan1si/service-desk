@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './Header';
+import styles from './Header.module.scss';
 import logo  from '../../assets/logo.svg';
 import { useState, useEffect } from 'react';
 

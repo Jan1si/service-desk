@@ -1,6 +1,7 @@
 import React from 'react';
+import { Bullet } from '../../components/Bullet';
+import { Filter } from '../../components/Filter';
 import styles from "./Users.module.scss";
-import search from '../../assets/search.svg';
 
 export const Users = () => {
   return (
@@ -9,17 +10,7 @@ export const Users = () => {
             <div className={styles.titleHeader}>
                 <h3>Пользователи</h3>
             </div>
-            <div className={styles.filtersHeader}>
-                <div className={styles.inputGroup}>
-                    <input className={styles.searchInput} type="text" placeholder="Поиск..." />
-                    <div className={styles.btnSearch}>
-                        <img src={search} alt="search" />
-                    </div>
-                </div>
-                <div className={styles.filtersGroup}>
-                    <p>Фильтры</p>
-                </div>
-            </div>
+            <Filter />
         </div>
         <div className={styles.bodyContent}>
             <div className={styles.tableBlock}>
@@ -70,11 +61,11 @@ export const Users = () => {
             </div>
             <div className={styles.paginations}>
                 <ul className={styles.listBullet}>
-                    <li className={styles.bullet}>1</li>
-                    <li className={styles.bullet}>2</li>
-                    <li className={styles.bullet}>3</li>
-                    <li className={styles.bullet}>4</li>
-                    <li className={styles.bullet}>5</li>
+                    <Bullet num={1}/>
+					<Bullet num={2}/>
+					<Bullet num={3}/>
+					<Bullet num={4}/>
+					<Bullet num={5}/> 
                 </ul>
             </div>
         </div>
