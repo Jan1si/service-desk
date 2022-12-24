@@ -38,3 +38,29 @@ li {
 	padding-bottom: 50px;
 }
 
+@media(max-width: 1630px) {
+	.wrapperApp{
+		width: 1400px;
+	}
+}
+
+@media(max-width: 1430px) {
+	.wrapperApp{
+		width: 1200px;
+	}
+}
+
+@media(max-width: 1230px) {
+	.wrapperApp{
+		width: 900px;
+	}
+}
+
+@media(max-width: 930px) {
+	.wrapperApp{
+		width: 600px;
+	}
+	.container{
+		margin-top: 0px;
+	}
+}

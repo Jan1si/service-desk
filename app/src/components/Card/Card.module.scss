@@ -89,3 +89,9 @@
 	color: white;
 	background: linear-gradient(131.33deg, #FF4343 -3.53%, rgba(255, 119, 119, 0.83) 196.14%);
 }
+
+@media(max-width: 930px){
+	.card{
+		width: 100%;
+	}
+}

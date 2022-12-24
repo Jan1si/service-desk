@@ -12,7 +12,7 @@ export const Main = () => {
             </div>
             <div className={styles.bodyBlock}>
                 <form action="" method="POST">
-                    <div className={styles.inputGroup}>
+                    <div className={`${styles.inputGroup} ${styles.inputSelect}`}>
                         <input placeholder="Выберите категорию проблемы...." type="text" className={styles.selectInput} disabled />
                         <div className={styles.btnSelect}>
                             <img src={arrowOpen} alt="open" />
