@@ -45,6 +45,7 @@
 .navLink{
 	text-decoration: none;
     transition: all .2s ease-in-out ;
+	cursor: pointer;
     &:hover {
         color: #ff6363;
     }
@@ -67,4 +68,47 @@
 	color: #ff6363;
 	font-size: 20px;
 	font-weight: 800;
+}
+
+
+.navDropItem{
+	position: relative;
+}
+
+.headerDropItem{
+	display: flex;
+	align-items: center;
+	grid-gap: 5px;
+	cursor: pointer;
+}
+
+.bodyDropItem{
+	width: -webkit-fill-available;
+	position: absolute;
+	background: white;
+	top: 150%;
+	left: -90%;
+	padding: 15px 10px;
+	border-radius: 10px;
+	box-shadow: 0px 5px 6px 0 rgb(0 0 0 / 20%);
+	transition: all .2s ease-in-out;
+}
+
+.dropItem{
+	margin: 10px 0;
+}
+
+.dropHidden{
+	position: absolute;
+	top: 100%;
+	left: -80%;
+	opacity: 0;
+	visibility: hidden;
+	width: -webkit-fill-available;
+	transition: all .2s ease-in-out;
+}
+
+.rotateArrow{
+	transform: rotate(-180deg);
+	transition: all .2s ease-in-out;
 }
