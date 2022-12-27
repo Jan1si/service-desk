@@ -43,7 +43,7 @@ export const Header = () => {
     ];
 
 
-    const [isShowNav, setIsShowNav] = useState(false);
+    const [isShowNav, setIsShowNav] = useState(true);
 
     useEffect(() => {
         setIsActive(() => JSON.parse(window.localStorage.getItem('isActive')));
@@ -54,8 +54,22 @@ export const Header = () => {
         window.localStorage.setItem('isActive', idx);
     }
 
+    const [activeShadow, setActiveShadow] = useState(false);
+
+    const openPopup = (isOpenPopup, setOpenPopup) => {
+        if (isOpenPopup) {
+            setActiveShadow((prev) => !prev);
+            setOpenPopup((prev) => !prev);
+        } else {
+            setActiveShadow((prev) => !prev);
+            setOpenPopup((prev) => !prev);
+        }
+    }
+
   return (
+    
     <header className={styles.header}>
+        <div className={styles.popupShadow}> </div>
         <div className={styles.navBlock}>
             <div className={styles.logo}>
                 <Link to="/" >
@@ -104,7 +118,7 @@ export const Header = () => {
                  </li>
             </nav>
 
-            <div onClick={() => setIsShowNav((prev) => !prev)} className={styles.btnOpenNav}>
+            <div onClick={() => openPopup(isShowNav, setIsShowNav)} className={styles.btnOpenNav}>
                 <span className={isShowNav ? styles.line_Active  : styles.line}></span>
             </div>
             <div className={`${isShowNav ? styles._active : styles.mobileNav}`}>
@@ -161,16 +175,16 @@ export const Header = () => {
             </div>
 
         </div>
-        {/* <div className={styles.authBlock}>
+        <div className={styles.authBlock}>
             <ul className={styles.authBar}>
                 <li className={styles.authItem}>
-                    <a href="#" className={`${styles.activeText} ${styles.authLink}`}>Войти</a>
+                    <a href="#" className={`${styles.activeText} ${styles.baseText} ${styles.authLink}`}>Войти</a>
                 </li>
                 <li className={styles.authItem}>
                     <a href="#" className={`${styles.baseText} ${styles.authLink}`}>Регистрация</a>
                 </li>
             </ul>
-        </div> */}
+        </div>
     </header>
   )
 }
