@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 
 export const Header = () => {
 
+    // Состояния ссылок
     const [isActive, setIsActive] = useState(0);
     const links = [
         {
@@ -23,6 +24,7 @@ export const Header = () => {
     ];
 
 
+    // Состояния выпадающего меню
     const [isOpen, setIsOpen] = useState(false);
 
     const dropLinks = [
@@ -42,20 +44,24 @@ export const Header = () => {
         },
     ];
 
-
+    // Состояния мобильного меню
     const [isShowNav, setIsShowNav] = useState(true);
 
+    // Получение последней ссылки из localstorage
     useEffect(() => {
         setIsActive(() => JSON.parse(window.localStorage.getItem('isActive')));
     }, []);
 
+    // Занесение активной ссылки в localstorage
     const linkClick = (idx) => {
         setIsActive(() => idx);
         window.localStorage.setItem('isActive', idx);
     }
 
+    // Состояние затемнения при активации popup меню
     const [activeShadow, setActiveShadow] = useState(false);
 
+    // Функция отвечающая за открытие popup меню и заиемнение экрана
     const openPopup = (isOpenPopup, setOpenPopup) => {
         if (isOpenPopup) {
             setActiveShadow((prev) => !prev);
@@ -76,6 +82,7 @@ export const Header = () => {
                     <img src={logo} alt="logo" />
                 </Link>
             </div>
+            {/* Обычное навигационное меню */}
             <nav className={styles.navBar}>
                 {
                     links.map((item, idx) => (
@@ -117,7 +124,8 @@ export const Header = () => {
                     </div>
                  </li>
             </nav>
-
+            
+            {/* Мобильное навигационное меню */}
             <div onClick={() => openPopup(isShowNav, setIsShowNav)} className={styles.btnOpenNav}>
                 <span className={isShowNav ? styles.line_Active  : styles.line}></span>
             </div>
