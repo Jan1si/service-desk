@@ -4,6 +4,7 @@ import styles from './Header.module.scss';
 import logo  from '../../assets/logo.svg';
 import arrow  from '../../assets/arrowOpen.svg';
 import { useState, useEffect } from 'react';
+import { NavMobile } from '../NavMobile';
 
 export const Header = () => {
 
@@ -43,10 +44,7 @@ export const Header = () => {
             'uri': '/lists/categories'
         },
     ];
-
-    // Состояния мобильного меню
-    const [isShowNav, setIsShowNav] = useState(true);
-
+    
     // Получение последней ссылки из localstorage
     useEffect(() => {
         setIsActive(() => JSON.parse(window.localStorage.getItem('isActive')));
@@ -58,19 +56,19 @@ export const Header = () => {
         window.localStorage.setItem('isActive', idx);
     }
 
+    // Состояния мобильного меню
+    const [isShowNav, setIsShowNav] = useState(true);
+
     // Состояние затемнения при активации popup меню
     const [activeShadow, setActiveShadow] = useState(false);
 
     // Функция отвечающая за открытие popup меню и заиемнение экрана
     const openPopup = (isOpenPopup, setOpenPopup) => {
-        if (isOpenPopup) {
-            setActiveShadow((prev) => !prev);
-            setOpenPopup((prev) => !prev);
-        } else {
-            setActiveShadow((prev) => !prev);
-            setOpenPopup((prev) => !prev);
-        }
+        setActiveShadow((prev) => !prev);
+        // setOpenPopup((prev) => !prev);
+        return console.log(isOpenPopup);
     }
+
 
   return (
     
@@ -124,64 +122,10 @@ export const Header = () => {
                     </div>
                  </li>
             </nav>
-            
-            {/* Мобильное навигационное меню */}
-            <div onClick={() => openPopup(isShowNav, setIsShowNav)} className={styles.btnOpenNav}>
-                <span className={isShowNav ? styles.line_Active  : styles.line}></span>
-            </div>
-            <div className={`${isShowNav ? styles._active : styles.mobileNav}`}>
-
-                <nav className={styles.navBarMobil}>
-                {
-                    links.map((item, idx) => (
-                        <li key={idx} className={styles.navItem}>
-                            <Link to={item.uri} style={{"textDecoration": "none"}}>
-                                <p 
-                                onClick={() => linkClick(item.id)} 
-                                className={
-                                    ` ${isActive === item.id ? styles.activeText : null}
-                                      ${styles.navLink} ${styles.baseText}`}>
-                                {item.title}
-                                </p>
-                            </Link>
-                        </li>
-                    ))
-                }
-                    <li  className={styles.navDropItem}>
-                    <div onClick={() => setIsOpen((prev) => !prev)} className={styles.headerDropItem}>
-                        <p className={
-                            `${isActive > 1 ? styles.activeText : null}
-                            ${styles.navLink} ${styles.baseText}`}>
-                             Справочник
-                        </p>
-                        <img className={isOpen ? styles.rotateArrow : ''} src={arrow} alt="" />
-                    </div>
-                    <div className={isOpen ? styles.bodyDropItem: styles.dropHidden}>
-                        <ul className={styles.listDropItems}>
-                            {dropLinks.map((item) => (
-                                <li onClick={() => linkClick(item.id)} key={item.title} className={styles.dropItem}>
-                                    <Link to={item.uri} style={{textDecoration: "none"}}>
-                                        <p className={`${isActive === item.id ? styles.activeText : null} ${styles.baseText} ${styles.navLink}`}>
-                                            {item.title}
-                                        </p>
-                                    </Link>
-                                </li>
-                            ))}
-                        
-                        </ul>
-                    </div>
-                 </li>
-                </nav>
-                <ul className={styles.authBar}>
-                    <li className={styles.authItem}>
-                            <a href="#" className={`${styles.baseText} ${styles.authLink}`}>Войти</a>
-                    </li>
-                    <li className={styles.authItem}>
-                            <a href="#" className={`${styles.baseText} ${styles.authLink}`}>Регистрация</a>
-                    </li>
-                </ul>
-            </div>
-
+            <NavMobile
+                isShowNav={isShowNav}
+                setIsShowNav={() => setIsShowNav()}
+                openPopup={() => openPopup()}/>
         </div>
         <div className={styles.authBlock}>
             <ul className={styles.authBar}>
