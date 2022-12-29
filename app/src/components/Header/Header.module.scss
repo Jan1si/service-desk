@@ -124,6 +124,17 @@
 	left: 0;
 	background: rgba(0, 0, 0, 0.7);
 	z-index: 2;
+	transition: all .4s ease-in-out;
+}
+
+.hiddenShadow{
+	visibility: hidden;
+	opacity: 0;
+}
+
+.showShadow{
+	visibility: visible;
+	opacity: 1;
 }
 
 @media(max-width: 1230px) {

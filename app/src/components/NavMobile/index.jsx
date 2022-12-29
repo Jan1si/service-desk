@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './NavMobile.module.scss';
 
-export const NavMobile = ({isShowNav, setIsShowNav, openPopup}) => {
+export const NavMobile = ({showNav, openNav}) => {
   return (
     <>
-        <div onClick={() => openPopup(isShowNav, setIsShowNav())} className={styles.menuBtn}>
+        <div onClick={() => openNav((prev) => !prev)} className={styles.menuBtn}>
             Меню
         </div>
-        <nav className={styles.mobileNav}>
+        <nav className={`${showNav ? styles.showNav : styles.hiddenNav} ${styles.mobileNav}`}>
             <ul className={styles.listItems}>
                 <li className={styles.navItem}>Кнопка 1</li>
                 <li className={styles.navItem}>Кнопка 2</li>

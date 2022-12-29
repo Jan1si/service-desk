@@ -5,6 +5,7 @@ import logo  from '../../assets/logo.svg';
 import arrow  from '../../assets/arrowOpen.svg';
 import { useState, useEffect } from 'react';
 import { NavMobile } from '../NavMobile';
+import { RegisterPopup } from '../RegisterPopup';
 
 export const Header = () => {
 
@@ -57,23 +58,23 @@ export const Header = () => {
     }
 
     // Состояния мобильного меню
-    const [isShowNav, setIsShowNav] = useState(true);
+    const [isShowNav, setIsShowNav] = useState(false);
 
     // Состояние затемнения при активации popup меню
     const [activeShadow, setActiveShadow] = useState(false);
 
-    // Функция отвечающая за открытие popup меню и заиемнение экрана
-    const openPopup = (isOpenPopup, setOpenPopup) => {
+    // Отслеживаем popup окна 
+    useEffect(() => {
         setActiveShadow((prev) => !prev);
-        // setOpenPopup((prev) => !prev);
-        return console.log(isOpenPopup);
-    }
+    }, [isShowNav]);
 
+    console.log("Мобильное меню", isShowNav);
+    console.log("Тень", activeShadow);
 
   return (
     
     <header className={styles.header}>
-        <div className={styles.popupShadow}> </div>
+        <div className={`${activeShadow ? styles.showShadow: styles.hiddenShadow} ${styles.popupShadow}`}> </div> 
         <div className={styles.navBlock}>
             <div className={styles.logo}>
                 <Link to="/" >
@@ -122,10 +123,8 @@ export const Header = () => {
                     </div>
                  </li>
             </nav>
-            <NavMobile
-                isShowNav={isShowNav}
-                setIsShowNav={() => setIsShowNav()}
-                openPopup={() => openPopup()}/>
+            {/* Мобильное навигационное меню */}
+            <NavMobile showNav={isShowNav} openNav={setIsShowNav}/>
         </div>
         <div className={styles.authBlock}>
             <ul className={styles.authBar}>
@@ -137,6 +136,7 @@ export const Header = () => {
                 </li>
             </ul>
         </div>
+        <RegisterPopup />
     </header>
   )
 }
