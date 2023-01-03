@@ -6,6 +6,7 @@ import arrow  from '../../assets/arrowOpen.svg';
 import { useState, useEffect } from 'react';
 import { NavMobile } from '../NavMobile';
 import { RegisterPopup } from '../AuthPopup/RegisterPopup';
+import { LoginPopup } from '../AuthPopup/LoginPopup';
 
 export const Header = () => {
 
@@ -136,7 +137,8 @@ export const Header = () => {
                 </li>
             </ul>
         </div>
-        <RegisterPopup />
+        {/* <RegisterPopup /> */}
+        <LoginPopup />
     </header>
   )
 }
