@@ -5,7 +5,7 @@ import logo  from '../../assets/logo.svg';
 import arrow  from '../../assets/arrowOpen.svg';
 import { useState, useEffect } from 'react';
 import { NavMobile } from '../NavMobile';
-import { RegisterPopup } from '../RegisterPopup';
+import { RegisterPopup } from '../AuthPopup/RegisterPopup';
 
 export const Header = () => {
 
