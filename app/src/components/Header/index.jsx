@@ -61,13 +61,15 @@ export const Header = () => {
     // Состояния мобильного меню
     const [isShowNav, setIsShowNav] = useState(false);
 
+    const [isShowForm, setIsShowForm] = useState(false);
+
     // Состояние затемнения при активации popup меню
     const [activeShadow, setActiveShadow] = useState(false);
 
     // Отслеживаем popup окна 
     useEffect(() => {
         setActiveShadow((prev) => !prev);
-    }, [isShowNav]);
+    }, [isShowNav, isShowForm]);
 
     console.log("Мобильное меню", isShowNav);
     console.log("Тень", activeShadow);
@@ -133,11 +135,11 @@ export const Header = () => {
                     <a href="#" className={`${styles.activeText} ${styles.baseText} ${styles.authLink}`}>Войти</a>
                 </li>
                 <li className={styles.authItem}>
-                    <a href="#" className={`${styles.baseText} ${styles.authLink}`}>Регистрация</a>
+                    <a href="#" onClick={() => setIsShowForm((prev) => !prev)} className={`${styles.baseText} ${styles.authLink}`}>Регистрация</a>
                 </li>
             </ul>
         </div>
-        <RegisterPopup />
+        <RegisterPopup showForm={isShowForm} setShowForm={setIsShowForm}/>
         {/* <LoginPopup /> */}
     </header>
   )

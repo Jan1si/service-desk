@@ -5,7 +5,7 @@ import close from '../../../assets/close.svg';
 import { useState, useEffect } from 'react';
 
 
-export const RegisterPopup = () => {
+export const RegisterPopup = ({showForm, setShowForm}) => {
 
   const [userName, setUserName] = useState('');
   const [email, setEmail] = useState('');
@@ -114,9 +114,9 @@ export const RegisterPopup = () => {
       
   }
 
-
+  showForm
   return (
-    <div className={styles.popupContainer}>
+    <div className={`${showForm ? styles.popupContainerActive : styles.popupContainer}`}>
       <div className={styles.popupBlock}>
 
         <div className={styles.headerBlock}>
@@ -126,7 +126,7 @@ export const RegisterPopup = () => {
           </div>
 
           <div className={styles.close}>
-              <img src={close} alt="close" />
+              <img onClick={() => setShowForm((prev) => !prev)} src={close} alt="close" />
           </div>
 
         </div>

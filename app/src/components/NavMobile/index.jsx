@@ -4,7 +4,7 @@ import styles from './NavMobile.module.scss';
 export const NavMobile = ({showNav, openNav}) => {
   return (
     <>
-        <div onClick={() => openNav((prev) => !prev)} className={styles.menuBtn}>
+        <div style={showNav ? {"zIndex": 2} : {"zIndex": 1}} onClick={() => openNav((prev) => !prev)} className={styles.menuBtn}>
             Меню
         </div>
         <nav className={`${showNav ? styles.showNav : styles.hiddenNav} ${styles.mobileNav}`}>
