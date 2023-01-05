@@ -18,8 +18,7 @@ export const LoginPopup = () => {
     const onLeaveFocus = () => {
       console.log("Инпут вне фокусе");
       setFocusInput(() => false);
-      if (password.replace(/\s/g, '') === repitPassword.replace(/\s/g, '') 
-          && password !== '' && repitPassword !== '') {
+      if (password === repitPassword){
         setValidPassword(() => false);
       } else {
         setValidPassword(() => true);

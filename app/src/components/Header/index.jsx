@@ -137,8 +137,8 @@ export const Header = () => {
                 </li>
             </ul>
         </div>
-        {/* <RegisterPopup /> */}
-        <LoginPopup />
+        <RegisterPopup />
+        {/* <LoginPopup /> */}
     </header>
   )
 }

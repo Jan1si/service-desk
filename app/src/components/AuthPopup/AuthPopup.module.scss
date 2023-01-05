@@ -45,6 +45,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
   input{
     width: 375px;
     height: 45px;
@@ -84,4 +85,20 @@
     background: rgba(133, 133, 133, 0.7);
     cursor: unset;
   }
+}
+
+.inputError{
+  background: #ff4343d3 !important;
+  transition: all .2s  ease-in-out;
+  &::placeholder {
+    color: rgba(255, 255, 255,) !important;
+    transition: all .2s  ease-in-out;
+  }
+}
+
+.validateError{
+  color: red;
+  position: absolute;
+  right: 0;
+  top: -20px;
 }
