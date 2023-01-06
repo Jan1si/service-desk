@@ -116,3 +116,22 @@
   right: 0;
   top: -20px;
 }
+
+.authLink {
+	text-decoration: none;
+    &:hover {
+        color: #ff6363;
+    }
+}
+
+.baseText{
+	color: #000000B2;
+	font-size: 20px;
+	font-weight: 800;
+}
+
+.activeText {
+	color: #ff6363;
+	font-size: 20px;
+	font-weight: 800;
+}

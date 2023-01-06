@@ -61,7 +61,8 @@ export const Header = () => {
     // Состояния мобильного меню
     const [isShowNav, setIsShowNav] = useState(false);
 
-    const [isShowForm, setIsShowForm] = useState(false);
+    const [isShowRegister, setIsShowRegister] = useState(false);
+    const [isShowLogin, setIsShowLogin] = useState(false);
 
     // Состояние затемнения при активации popup меню
     const [activeShadow, setActiveShadow] = useState(false);
@@ -69,7 +70,7 @@ export const Header = () => {
     // Отслеживаем popup окна 
     useEffect(() => {
         setActiveShadow((prev) => !prev);
-    }, [isShowNav, isShowForm]);
+    }, [isShowNav, isShowRegister, isShowLogin]);
 
     console.log("Мобильное меню", isShowNav);
     console.log("Тень", activeShadow);
@@ -132,15 +133,16 @@ export const Header = () => {
         <div className={styles.authBlock}>
             <ul className={styles.authBar}>
                 <li className={styles.authItem}>
-                    <a href="#" className={`${styles.activeText} ${styles.baseText} ${styles.authLink}`}>Войти</a>
+                    <LoginPopup showForm={isShowLogin} setShowForm={setIsShowLogin} />
+                    
                 </li>
                 <li className={styles.authItem}>
-                    <a href="#" onClick={() => setIsShowForm((prev) => !prev)} className={`${styles.baseText} ${styles.authLink}`}>Регистрация</a>
+                    <RegisterPopup showForm={isShowRegister} setShowForm={setIsShowRegister} />
                 </li>
             </ul>
         </div>
-        <RegisterPopup showForm={isShowForm} setShowForm={setIsShowForm}/>
-        {/* <LoginPopup /> */}
+        
+        
     </header>
   )
 }

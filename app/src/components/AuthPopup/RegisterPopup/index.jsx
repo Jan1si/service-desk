@@ -2,121 +2,21 @@ import React from 'react'
 import styles from '../AuthPopup.module.scss';
 import logo from '../../../assets/logo.svg';
 import close from '../../../assets/close.svg';
-import { useState, useEffect } from 'react';
-
+import { useInput } from '../../../hooks/useInput';
 
 export const RegisterPopup = ({showForm, setShowForm}) => {
 
-  const [userName, setUserName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repitPassword, setRepitPassword] = useState('');
+  const userName = useInput('', {isEmpty: true, minLength: 3, maxLength: 50});
+  const email = useInput('', {isEmpty: true, minLength: 3, maxLength: 50, validEmail: true});
+  const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 50});
+  const repitPassword = useInput('', {isEmpty: true, minLength: 3, maxLength: 50, checkPassword: true}, password.value);
 
-  const [userNameDirty, setUserNameDirty] = useState(false);
-  const [emailDirty, setEmailDirty] = useState(false);
-  const [passwordDirty, setPasswordDirty] = useState(false);
-  const [repitPasswordDirty, setRepitPasswordDirty] = useState(false);
 
-  const [userNameError, setUserNameError] = useState('Поле должно быть заполнено');
-  const [emailError, setEmailError] = useState('Поле должно быть заполнено');
-  const [passwordError, setPasswordError] = useState('Поле должно быть заполнено');
-  const [repitPasswordError, setRepitPasswordError] = useState('Поле должно быть заполнено');
-
-  const [validForm, setValidForm] = useState(false);
-
-  useEffect(() => {
-    if (userNameError|| emailError || passwordError || repitPasswordError) {
-      setValidForm(() => false);
-    } else {
-      setValidForm(() => true);
-    }
-  }, [userNameError, emailError, passwordError, repitPasswordError])
-
-  const userNameHandler = (value) => {
-    setUserName(() => value);
-    if (value.length < 3) {
-      setUserNameError(() => 'Слишком короткое значение');
-      if (value.length === 0) {
-        setUserNameError(() => 'Поле должно быть заполнено');
-      }
-    } else if (value.length > 50) {
-      setUserNameError(() => 'Слишком длинное значение');
-    } else {
-      setUserNameError(() => '');
-    }
-  }
-
-  const emailHandler = (value) => {
-    setEmail(() => value);
-    const regex = /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@[*[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+]*/;
-    if (value.length === 0) {
-      setEmailError(() => 'Поле должно быть заполнено');
-    } else {
-      if (!regex.test(String(value).toLowerCase())) {
-        setEmailError(() => 'Некорректный Email');
-      } else if (value.length < 10) {
-        setEmailError(() => 'Слишком короткое значение');
-      } else {
-        setEmailError(() => '');
-      }
-    }
-    
-  }
-
-  const passwordHandler = (value) => {
-    setPassword(() => value);
-    if (value.length < 3) {
-      setPasswordError(() => 'Слишком короткое значение');
-      if (value.length === 0) {
-        setPasswordError(() => 'Поле должно быть заполнено');
-      }
-    } else if (value.length > 50) {
-        setPasswordError(() => 'Слишком длинное значение');
-    } else {
-        setPasswordError(() => '');
-        if (value === repitPassword) {
-          setRepitPasswordError(() => '');
-        } else {
-          setRepitPasswordError(() => 'Пароли не совпадают');
-        }
-    }
-  }
-
-  const repitPasswordHandler = (value) => {
-    setRepitPassword(() => value);
-    if (value.length === 0) {
-      setRepitPasswordError(() => 'Поле должно быть заполнено');
-    } else {
-      if (value !== password) {
-        setRepitPasswordError(() => 'Пароли не совпадают');
-      } else {
-        setRepitPasswordError(() => '');
-      }
-    }
-    
-  }
-
-  const blurHandler = (name) => {
-    switch (name){
-      case 'user_name':
-        setUserNameDirty(() => true);
-        break;
-      case 'email':
-        setEmailDirty(() => true);
-        break;
-      case 'password':
-        setPasswordDirty(() => true);
-        break;
-      case 'repit_password':
-        setRepitPasswordDirty(() => true);
-        break;
-    }
-      
-  }
-
-  showForm
   return (
-    <div className={`${showForm ? styles.popupContainerActive : styles.popupContainer}`}>
+    <>
+      <a href="#" onClick={() => setShowForm((prev) => !prev)} className={`${styles.baseText} ${styles.authLink}`}>Регистрация</a>
+      
+      <div className={`${showForm ? styles.popupContainerActive : styles.popupContainer}`}>
       <div className={styles.popupBlock}>
 
         <div className={styles.headerBlock}>
@@ -138,63 +38,68 @@ export const RegisterPopup = ({showForm, setShowForm}) => {
 
           <div className={styles.popupForm}>
             <div className={styles.inputGroup}>
-              {(userNameDirty && userNameError) && <div className={styles.validateError}>{userNameError}</div>}
+              {(userName.isDirty && userName.messageError) && <div className={styles.validateError}>{userName.messageError}</div>}
               <label htmlFor="user_name">ФИО:</label>
               <input 
                 type="text"
                 name='user_name'
-                value={userName}
-                onChange={(e) => userNameHandler(e.target.value)}
-                onBlur={(e) => blurHandler(e.target.name)}
-                className={userNameError && userNameDirty ? styles.inputError : null}
+                value={userName.value}
+                onChange={(e) => userName.inputChange(e)}
+                onBlur={(e) => userName.inputBlur(e)}
+                className={userName.messageError && userName.isDirty ? styles.inputError : null}
                 placeholder='Имя пользователя'/>
             </div>
             
             <div className={styles.inputGroup}>
-              {(emailDirty && emailError) && <div className={styles.validateError}>{emailError}</div>}
+              {(email.isDirty && email.messageError) && <div className={styles.validateError}>{email.messageError}</div>}
               <label htmlFor="email">Почта:</label>
               <input 
                   type="email"
                   name='email'
                   placeholder='Почта'
-                  className={emailError && emailDirty ? styles.inputError : null}
-                  value={email}
-                  onChange={(e) => emailHandler(e.target.value)}
-                  onBlur={(e) => blurHandler(e.target.name)}/>
+                  value={email.value}
+                  onChange={(e) => email.inputChange(e)}
+                  onBlur={(e) => email.inputBlur(e)}
+                  className={email.messageError && email.isDirty ? styles.inputError : null}
+                  
+                  />
             </div>
     
             <div className={styles.inputGroup}>
-              {(passwordDirty && passwordError) && <div className={styles.validateError}>{passwordError}</div>}
+              {(password.isDirty && password.messageError) && <div className={styles.validateError}>{password.messageError}</div>}
               <label htmlFor="password">Пароль:</label>
               <input 
                   type="password"
                   name='password'
                   placeholder='Пароль'
-                  className={passwordError && passwordDirty ? styles.inputError : null}
-                  value={password}
-                  onChange={(event) => passwordHandler(event.target.value)}
-                  onBlur={(e) => blurHandler(e.target.name)}/>
+                  value={password.value}
+                  onChange={(e) => password.inputChange(e)}
+                  onBlur={(e) => password.inputBlur(e)}
+                  className={password.messageError && password.isDirty ? styles.inputError : null}
+                  
+                  />
                   
             </div>
 
             <div className={styles.inputGroup}>
-              {(repitPasswordDirty && repitPasswordError) && <div className={styles.validateError}>{repitPasswordError}</div>}
+              {(repitPassword.isDirty && repitPassword.messageError) && <div className={styles.validateError}>{repitPassword.messageError}</div>}
               <label htmlFor="repit_password">Повторите пароль:</label>
               <input 
                   type="password"
                   name='repit_password'
                   placeholder='Повторите пароль'
-                  className={repitPasswordError && repitPasswordDirty ? styles.inputError : null}
-                  value={repitPassword}
-                  onChange={(event) => repitPasswordHandler(event.target.value)}
-                  onBlur={(e) => blurHandler(e.target.name)}/>
+                  value={repitPassword.value}
+                  onChange={(e) => repitPassword.inputChange(e)}
+                  onBlur={(e) => repitPassword.inputBlur(e)}
+                  className={repitPassword.messageError && repitPassword.isDirty ? styles.inputError : null}
+                  />
                   
             </div>
 
           </div>
             <button 
               type="submit" 
-              disabled={!validForm ? true : false}
+              disabled={!userName.validForm || !email.validForm || !password.validForm || !repitPassword.validForm}
               className={styles.btnSubmit}>
                 Зарегистрироваться
             </button>
@@ -202,5 +107,7 @@ export const RegisterPopup = ({showForm, setShowForm}) => {
     
       </div>
     </div>
+    </>
+    
   )
 }

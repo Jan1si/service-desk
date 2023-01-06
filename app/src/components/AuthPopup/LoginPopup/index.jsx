@@ -2,33 +2,18 @@ import React from 'react';
 import styles from '../AuthPopup.module.scss';
 import logo from '../../../assets/logo.svg';
 import close from '../../../assets/close.svg';
-import { useState } from 'react';
+import { useInput } from '../../../hooks/useInput';
 
-export const LoginPopup = () => {
-    const [validPassword, setValidPassword] = useState(true);
-    const [password, setPassword] = useState('');
-    const [repitPassword, setRepitPassword] = useState('');
-    const [focusInput, setFocusInput] = useState(false);
-  
-    const onDetectedFocus = () => {
-      console.log("Инпут в фокусе");
-      setFocusInput(() => true);
-    };
-  
-    const onLeaveFocus = () => {
-      console.log("Инпут вне фокусе");
-      setFocusInput(() => false);
-      if (password === repitPassword){
-        setValidPassword(() => false);
-      } else {
-        setValidPassword(() => true);
-      }
-    };
-  
-    console.log(focusInput);
+export const LoginPopup = ({showForm, setShowForm}) => {
+    
+    const email = useInput('', {isEmpty: true, minLength: 3, maxLength: 50, validEmail: true});
+    const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 50});
   
     return (
-      <div className={styles.popupContainer}>
+      <>
+        <a href="#" onClick={() => setShowForm((prev) => !prev)} className={`${styles.baseText} ${styles.authLink}`}>Войти</a>
+      
+        <div className={`${showForm ? styles.popupContainerActive : styles.popupContainer}`}>
         <div className={styles.popupBlock}>
   
           <div className={styles.headerBlock}>
@@ -38,7 +23,7 @@ export const LoginPopup = () => {
             </div>
   
             <div className={styles.close}>
-                <img src={close} alt="close" />
+                <img onClick={() => setShowForm((prev) => !prev)} src={close} alt="close" />
             </div>
   
           </div>
@@ -51,29 +36,43 @@ export const LoginPopup = () => {
             <div className={styles.popupForm}>
   
               <div className={styles.inputGroup}>
+                {(email.isDirty && email.messageError) && <div className={styles.validateError}>{email.messageError}</div>}
                 <label htmlFor="email">Почта:</label>
-                <input type="email" name='email' placeholder='Почта'/>
+                <input 
+                  type="email"
+                  name='email'
+                  placeholder='Почта'
+                  value={email.value}
+                  onChange={(e) => email.inputChange(e)}
+                  onBlur={(e) => email.inputBlur(e)}
+                  className={email.messageError && email.isDirty ? styles.inputError : null}
+                  />
               </div>
   
               <div className={styles.inputGroup}>
+                {(password.isDirty && password.messageError) && <div className={styles.validateError}>{password.messageError}</div>}
                 <label htmlFor="password">Пароль:</label>
                 <input 
                     type="password"
                     name='password'
                     placeholder='Пароль'
-                    onFocus={() => onDetectedFocus()}
-                    onBlur={() => onLeaveFocus()}
-                    onChange={(event) => setPassword(event.target.value)}
-                    value={password}/>
+                    value={password.value}
+                    onChange={(e) => password.inputChange(e)}
+                    onBlur={(e) => password.inputBlur(e)}
+                    className={password.messageError && password.isDirty ? styles.inputError : null}
+                    />
               </div>
   
             </div>
               <button 
                 type="submit"
+                disabled={!email.validForm || !password.validForm}
                 className={styles.btnSubmit}>Войти</button>
           </div>
       
         </div>
       </div>
+      </>
+      
     )
 }
