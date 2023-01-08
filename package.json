@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "php spark serve webpack serve",
+    "start": "npx webpack serve",
     "build": "webpack",
     "build-prod": "webpack --mode=production",
     "clean": "rd /s /q dist"
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Jan1si/service-desk#readme",
   "dependencies": {
+    "axios": "^1.2.2",
     "file-loader": "^6.2.0",
     "path": "^0.12.7",
     "react": "^18.2.0",

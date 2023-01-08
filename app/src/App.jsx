@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './index.scss';
 import { Header } from './components/Header';
 import { Routes } from 'react-router-dom';
@@ -6,8 +6,18 @@ import { Route } from 'react-router-dom';
 import { Main } from './pages/Main';
 import { Quiestions } from './pages/Questions';
 import { Users } from './pages/Users';
+import axios from 'axios';
 
 export const App = () => {
+
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/users").then((resp) => {
+            console.log(resp);
+        })
+    }, [])
+
   return (
         <div className={styles.wrapperApp}>
         <div className={styles.container}>
