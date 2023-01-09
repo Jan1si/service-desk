@@ -10,13 +10,12 @@ import axios from 'axios';
 
 export const App = () => {
 
-    const [users, setUsers] = useState([]);
-
     useEffect(() => {
-        axios.get("http://localhost:8080/api/users").then((resp) => {
-            console.log(resp);
+        axios.get("http://localhost:8080/api/users").then(({data}) => {
+            console.log(data.user_data);
         })
-    }, [])
+    }, []);
+
 
   return (
         <div className={styles.wrapperApp}>

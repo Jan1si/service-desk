@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '../AuthPopup.module.scss';
 import logo from '../../../assets/logo.svg';
 import close from '../../../assets/close.svg';
 import { useInput } from '../../../hooks/useInput';
+import axios from 'axios';
 
 export const RegisterPopup = ({showForm, setShowForm}) => {
 
@@ -10,6 +11,23 @@ export const RegisterPopup = ({showForm, setShowForm}) => {
   const email = useInput('', {isEmpty: true, minLength: 3, maxLength: 50, validEmail: true});
   const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 50});
   const repitPassword = useInput('', {isEmpty: true, minLength: 3, maxLength: 50, checkPassword: true}, password.value);
+
+  const [submitData, setSubmitData] = useState({}); 
+
+  console.log(submitData);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const obj = {
+      user_name: e.target[0].value,
+      email: e.target[1].value,
+      password: e.target[2].value,
+    }
+    console.log(obj);
+    axios.post('http://localhost:8080/api/users', obj).then((response) => {
+      console.log(response);
+    });
+  }
 
 
   return (
@@ -35,7 +53,7 @@ export const RegisterPopup = ({showForm, setShowForm}) => {
           <div className={styles.title}>
             <h3>Регистрация</h3>
           </div>
-
+          <form onSubmit={(e) => handleSubmit(e)}>
           <div className={styles.popupForm}>
             <div className={styles.inputGroup}>
               {(userName.isDirty && userName.messageError) && <div className={styles.validateError}>{userName.messageError}</div>}
@@ -60,8 +78,7 @@ export const RegisterPopup = ({showForm, setShowForm}) => {
                   value={email.value}
                   onChange={(e) => email.inputChange(e)}
                   onBlur={(e) => email.inputBlur(e)}
-                  className={email.messageError && email.isDirty ? styles.inputError : null}
-                  
+                  className={email.messageError && email.isDirty ? styles.inputError : null} 
                   />
             </div>
     
@@ -76,9 +93,7 @@ export const RegisterPopup = ({showForm, setShowForm}) => {
                   onChange={(e) => password.inputChange(e)}
                   onBlur={(e) => password.inputBlur(e)}
                   className={password.messageError && password.isDirty ? styles.inputError : null}
-                  
-                  />
-                  
+                  /> 
             </div>
 
             <div className={styles.inputGroup}>
@@ -93,7 +108,6 @@ export const RegisterPopup = ({showForm, setShowForm}) => {
                   onBlur={(e) => repitPassword.inputBlur(e)}
                   className={repitPassword.messageError && repitPassword.isDirty ? styles.inputError : null}
                   />
-                  
             </div>
 
           </div>
@@ -103,6 +117,7 @@ export const RegisterPopup = ({showForm, setShowForm}) => {
               className={styles.btnSubmit}>
                 Зарегистрироваться
             </button>
+          </form>
         </div>
     
       </div>
