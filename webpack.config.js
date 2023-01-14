@@ -54,6 +54,7 @@ module.exports = {
     },
     devServer: {
       historyApiFallback: true,
+      port: 3060,
     },
   resolve: {
     extensions: ["*", ".js", ".jsx",".scss"],

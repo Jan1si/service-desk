@@ -12,23 +12,19 @@ export const RegisterPopup = ({showForm, setShowForm}) => {
   const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 50});
   const repitPassword = useInput('', {isEmpty: true, minLength: 3, maxLength: 50, checkPassword: true}, password.value);
 
-  const [submitData, setSubmitData] = useState({}); 
-
-  console.log(submitData);
-
-  const handleSubmit = (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
-    const obj = {
-      user_name: e.target[0].value,
-      email: e.target[1].value,
-      password: e.target[2].value,
-    }
-    console.log(obj);
-    axios.post('http://localhost:8080/api/users', obj).then((response) => {
-      console.log(response);
+    axios.post('http://localhost:8080/api/users', {
+      user_name: userName.value,
+      email: email.value,
+      password: password.value,
+    }).then((res) => {
+      console.log(res);
+      setShowForm((prev) => !prev);
+    }).catch(() => {
+      alert("Произошла ошибка отправки формы");
     });
   }
-
 
   return (
     <>

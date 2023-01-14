@@ -9,6 +9,11 @@ export const LoginPopup = ({showForm, setShowForm}) => {
     const email = useInput('', {isEmpty: true, minLength: 3, maxLength: 50, validEmail: true});
     const password = useInput('', {isEmpty: true, minLength: 3, maxLength: 50});
   
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      axios.get()
+    }
+
     return (
       <>
         <a href="#" onClick={() => setShowForm((prev) => !prev)} className={`${styles.baseText} ${styles.authLink}`}>Войти</a>
